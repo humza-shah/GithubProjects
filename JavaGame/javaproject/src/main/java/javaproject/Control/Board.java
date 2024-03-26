@@ -105,13 +105,12 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         else if (gameWin) {
             drawBackground(g);
             //FOR GAME WIN END SCREEN: Can draw text saying "Congratulations!" Code needs to be written below in this else if block
-
-
-
+            drawEndScreen(g);
         }
         else { //gamelose
             drawBackground(g);
             //FOR GAME LOSE END SCREEN: Can draw text saying "Game Over!" Code needs to be written below in this else block
+            drawEndScreen(g);
         }
     }
 
@@ -208,6 +207,25 @@ public class Board extends JPanel implements ActionListener, KeyListener {
         int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
         int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
         g2d.drawString(text, x, y);
+    }
+
+    /**
+        Method for drawing the end game screen
+        @param g The graphics
+    */
+    private void drawEndScreen(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        // set the text color and font
+        g2d.setColor(new Color(30, 201, 139));
+        g2d.setFont(new Font("Lato", Font.BOLD, 25));
+        if (gameWin == true) {
+            g2d.drawString("You Win!", 210, 195);
+        }
+        else {
+            g2d.drawString("You Lose!", 210, 195);
+        }
+        String text = player.getScore();
+        g2d.drawString(text, 210, 225);
     }
 
     /**
